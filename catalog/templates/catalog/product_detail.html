@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <body>
+    <div class="container">
+        <div class="row text-center">
+            {#            {% for object in object_list %}#}
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">{{ object | title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1>{{ object.name }}</h1>
+                        <p>Description: {{ object.description }}</p>
+                        <p>Price: {{ object.price }}</p>
+                        {#                            <img src="{% static object.image %}" class="img-fluid" alt="{{ product | title }}">#}
+                        <img src="{{ object.image | mediapath }}" class="img-fluid" alt="{{ object | title }}">
+                        <p></p>
+                        <p>Category: {{ object.category }}</p>
+                        <p>created_at: {{ object.created_at }}</p>
+                        <p>updated_at: {{ object.updated_at }}</p>
+                        <p>Пользователь: {{ object.owner|default:'Без пользователя' }}</p>
+                    </div>
+                </div>
+            </div>
+            {#            {% endfor %}#}
+        </div>
+    </div>
+    </body>
+{% endblock %}

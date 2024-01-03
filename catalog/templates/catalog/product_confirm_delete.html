@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Удаление продукта
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                Удалить продукт {{ object }}
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                                <a href='{% url 'catalog:home' %}' class="btn btn-success">Отмена</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

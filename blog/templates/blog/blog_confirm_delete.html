@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                <p>Хотите удалить статью {{ blog.title }}</p>
+                                <button type="submit" class="btn btn-success">Подтвердить</button>
+                                    <a href="{% url "blog:list" %}" class="btn btn-warning">Отмена</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

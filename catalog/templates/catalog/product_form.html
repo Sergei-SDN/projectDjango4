@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Добавление продукта
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+{#                                {{ form.as_p }}#}
+                                {% crispy form %}
+{#                                <button type="submit" class="btn btn-success">Сохранить</button>#}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
