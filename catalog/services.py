@@ -5,7 +5,7 @@ from Category.models import Category
 
 
 def get_cached_category_for_product():
-    if settings.CASH_ENABLE:
+    if settings.CACHES_ENABLED:
         key = f'category_list'
         category_list = cache.get(key)
         if category_list is None:
