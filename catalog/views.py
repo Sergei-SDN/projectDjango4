@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from Product.models import Product, Version
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
+from catalog.services import get_cached_category_for_product
 
 
 # Create your views here.
@@ -87,13 +88,20 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['title'] = 'SkyStore'
+
+        # Используем кешированную функцию
+        category_list = get_cached_category_for_product()
+
+        context['category_list'] = category_list
+
         products = Product.objects.all()
         active_versions = {}
+
         for product in products:
             active_versions[product] = Version.objects.filter(product=product, is_current=True).first()
-            context['active_versions'] = active_versions
+
+        context['active_versions'] = active_versions
         return context
 
 
